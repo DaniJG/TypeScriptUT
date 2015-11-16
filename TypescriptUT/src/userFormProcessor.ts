@@ -29,16 +29,15 @@ class UserFormProcessor {
     {
         var deferred = $.Deferred<any>();
         this.userValidator.validate(user.name).done((isValid: boolean) => {
-            //deferred.reject();
-            //Logging.log("user validation failed");
-            if (isValid) {
-                this.userService.postUser(user)
-                    .done(() => { deferred.resolve(); Logging.log("posted succeeded"); })
-                    .fail(() => { deferred.reject(); Logging.log("posted failed"); });
-            } else {
-                Logging.log("user validation failed");
-                deferred.reject();
-            }
+            deferred.reject();
+            //if (isValid) {
+            //    this.userService.postUser(user)
+            //        .done(() => { deferred.resolve(); Logging.log("post succeeded"); })
+            //        .fail(() => { deferred.reject(); Logging.log("post failed"); });
+            //} else {
+            //    Logging.log("user validation failed");
+            //    deferred.reject();
+            //}
         });
         return deferred.promise();
     }

@@ -13,20 +13,17 @@ var UserFormProcessor = (function () {
         this.userService = userService;
     }
     UserFormProcessor.prototype.processUser = function (user) {
-        var _this = this;
         var deferred = $.Deferred();
         this.userValidator.validate(user.name).done(function (isValid) {
-            //deferred.reject();
-            //Logging.log("user validation failed");
-            if (isValid) {
-                _this.userService.postUser(user)
-                    .done(function () { deferred.resolve(); Logging.log("posted succeeded"); })
-                    .fail(function () { deferred.reject(); Logging.log("posted failed"); });
-            }
-            else {
-                Logging.log("user validation failed");
-                deferred.reject();
-            }
+            deferred.reject();
+            //if (isValid) {
+            //    this.userService.postUser(user)
+            //        .done(() => { deferred.resolve(); Logging.log("post succeeded"); })
+            //        .fail(() => { deferred.reject(); Logging.log("post failed"); });
+            //} else {
+            //    Logging.log("user validation failed");
+            //    deferred.reject();
+            //}
         });
         return deferred.promise();
     };
